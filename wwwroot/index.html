@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 30px;
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #243b63;
+        }
+
+        .form-card, .table-card {
+            background: white;
+            padding: 22px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px #00000012;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            background: #2563eb;
+            margin: 5px 3px 0 0;
+        }
+
+        .delete-btn {
+            background: #dc2626;
+        }
+
+        .edit-btn {
+            background: #d97706;
+        }
+
+        .cancel-btn {
+            background: #64748b;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #eef2ff;
+        }
+
+        .message {
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        @media(max-width: 650px) {
+            body {
+                padding: 12px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .table-card {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Job Portal</h1>
+        <p>Manage available job openings</p>
+
+        <div class="form-card">
+            <h2 id="formTitle">Add New Job</h2>
+
+            <form id="jobForm">
+                <div class="form-grid">
+                    <input type="text" id="title" placeholder="Job Title" required>
+                    <input type="text" id="company" placeholder="Company" required>
+                    <input type="text" id="location" placeholder="Location" required>
+                    <input type="number" id="salary" placeholder="Salary" min="0" step="0.01" required>
+                </div>
+
+                <button type="submit" id="submitBtn">Add Job</button>
+                <button type="button" id="cancelBtn" class="cancel-btn" hidden>Cancel</button>
+            </form>
+
+            <div id="message" class="message"></div>
+        </div>
+
+        <div class="table-card">
+            <h2>Available Jobs</h2>
+            <button type="button" onclick="loadJobs()">Refresh Jobs</button>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Company</th>
+                        <th>Location</th>
+                        <th>Salary</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="jobsTable">
+                    <tr><td colspan="6">Loading jobs...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
